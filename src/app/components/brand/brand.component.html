@@ -1,0 +1,24 @@
+<li class="nav-item">
+    <a class="nav-link" data-toggle="collapse" href="#brands" role="button" aria-expanded="false" aria-controls="brands">
+      <i class="fas fa-align-center"></i>
+      <span class="link-title">Brands</span>
+      <i class="link-arrow" data-feather="chevron-down"></i>
+    </a>
+    <div *ngIf="brands.length!=0" class="collapse" id="brands">
+      <ul class="nav sub-menu">
+        <li class="nav-item">
+          <input type="search" [(ngModel)]="filterText" class="form-control" style="max-width:160px;" placeholder="Marka Ara"/>
+        </li>
+        <li (click)="setAllBrand()" [class]="allNavlinkClass()" >
+          <a class="nav-link btn" >Tüm Markalar</a>
+        </li>
+        <li *ngFor="let brand of brands |brandFilter :filterText"  [class]="brandNavLinkClass(brand)">
+          <a (click)="setBrand(brand)" class="nav-link btn float-left ">{{brand.brandName}}</a>
+        <a   routerLink="/brandUpdate/{{brand.id}}" class="btn" data-toggle="tooltip" data-placement="top" title="Güncelle"><i class="fas fa-pen-square"></i></a>
+        </li>
+      </ul>
+    </div>
+    <div  *ngIf="brands.length==0" class="spinner-border text-danger" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </li>

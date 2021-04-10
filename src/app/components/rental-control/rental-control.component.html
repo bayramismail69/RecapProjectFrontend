@@ -1,0 +1,94 @@
+<div class="row">
+  <div class="col"></div>
+  <div class="col">
+    <ngx-spinner
+      bdColor="rgba(51,51,51,0.8)"
+      size="large"
+      color="#fff"
+      type="ball-scale-multiple"
+    >
+      <p style="font-size: 20px; color: white">Araç Kontrol Ediliyor</p>
+    </ngx-spinner>
+  </div>
+  <div class="col"></div>
+</div>
+<div
+  *ngIf="success == true"
+ 
+>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col"  style="background-color: aliceblue; border-radius: 10px;max-width:320px;">
+      <div class="row">
+        <!-- <svg
+          xmlns="http://www.w3.org/2000/svg"
+          style="color: seagreen"
+          width="280"
+          height="280"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-check-circle"
+        >
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg> -->
+        <!-- https://i.pinimg.com/originals/35/f3/23/35f323bc5b41dc4269001529e3ff1278.gif -->
+        <!-- https://cdn.dribbble.com/users/251873/screenshots/9388228/error-img.gif -->
+        <img src="https://i.pinimg.com/originals/35/f3/23/35f323bc5b41dc4269001529e3ff1278.gif">
+      </div>
+      <div class="row">
+           <div class="col">
+             <h1 style="color: seagreen;" class="text-center">Bu Araç Kiralanabilir</h1>
+           </div>
+           
+      </div>
+      <div class="row mb-2">
+        <div class="col"><button (click)="btnBack()" class="btn btn-danger"><i class="fas fa-angle-left"></i> Geri</button></div>
+        <div class="col"><a  routerLink="/carRental/{{carId}}" class="btn btn-primary float-right">İleri <i class="fas fa-angle-right"></i></a></div>
+      </div>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+<div
+  *ngIf="error == true"
+>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col"  style="background-color: aliceblue; border-radius: 10px;max-width:320px;">
+      <div class="row">
+        <!-- <svg
+          xmlns="http://www.w3.org/2000/svg"
+          style="color: seagreen"
+          width="280"
+          height="280"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-check-circle"
+        >
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg> -->
+        <img src="https://cdn.dribbble.com/users/251873/screenshots/9388228/error-img.gif">
+      </div>
+      <div class="row">
+           <div class="col">
+             <h3 style="color: darkred;" class="text-center">{{message}}</h3>
+           </div>
+           
+      </div>
+      <div class="row mb-2">
+        <div class="col"><button routerLink="/cars" class="btn btn-danger"><i class="fas fa-angle-left fa-2x"></i>Anasayfa 'ya Dön</button></div>
+      </div>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>

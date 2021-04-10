@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col"></div>
+    <div style="background-color:white; min-width:300px; border-radius:10px;" class="col p-5">
+        <main class="form-signin">
+            <form [formGroup]="loginForm">
+             <div class="row">
+                 <div class="col"> <h1 class="h3 mb-3 fw-normal text-center">Giriş yap</h1> </div>
+             </div>
+        
+              <div class="form-floating m-2">
+                <input
+                  formControlName="email"
+                  type="email"
+                  class="form-control"
+                  id="floatingInput"
+                  placeholder="name@example.com"
+                />
+                <label for="floatingInput">E-posta</label>
+              </div>
+              <div class="form-floating m-2">
+                <input
+                formControlName="password"
+                  type="password"
+                  class="form-control"
+                  id="floatingPassword"
+                  placeholder="Password"
+                />
+                <label for="floatingPassword">Parola</label>
+              </div>
+        
+              <div class="checkbox mb-3">
+                <label>
+                 <a class="btn btn-outline-dark">Şifremi unuttum</a>
+                </label>
+              </div>
+              <button class="w-100 btn btn-lg btn-primary" (click)="login()">
+                Giriş yap
+              </button>
+           
+            </form>
+          </main>
+    </div>
+    <div class="col"></div>
+</div>

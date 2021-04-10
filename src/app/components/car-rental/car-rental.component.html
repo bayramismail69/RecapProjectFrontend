@@ -1,0 +1,71 @@
+<div *ngIf="dataLoded==true" class="row">
+    <div class="col">
+      <div class="card text-white bg-primary">
+          <div style="border-bottom-style: double;
+          border-bottom-color: white;
+          border-bottom-width: 1px;" class="card-header text-center">
+             <img *ngIf="carDto.imagePath[0]!=null" style="max-width:200px;" src="https://localhost:44309/{{carDto.imagePath[0]}}">
+             <img *ngIf="carDto.imagePath[0]==null" style="max-width:200px;" src="https://localhost:44309/Images/default.png">
+          </div>
+          <div class="card-body">
+            <table class="table table-light ">
+              <tr>
+                  <td class="table-success">Marka</td>
+                  <td> {{carDto.brandName | uppercase}}</td>
+              </tr>
+                <tr>
+                    <td class="table-success">Marka</td>
+                    <td>{{carDto.carName |uppercase}}</td>
+                </tr>
+                <tr>
+                  <td class="table-success">Model Yılı</td>
+                  <td>{{carDto.modelYear}}</td>
+              </tr>
+              <tr>
+                  <td class="table-success">Renk</td>
+                  <td>{{carDto.colorName}}</td>
+              </tr>
+              <tr>
+                  <td class="table-success">Fiyat</td>
+                  <td>{{carDto.dailyPrice |currency}}</td>
+              </tr>
+            </table>
+          </div>
+          <div class="card-footer">
+          </div>
+        </div>
+    </div>
+    <div class="col">
+      <div class=" grid-margin stretch-card">
+        <div class="card">
+          <form [formGroup]="rentalAddForm">
+            <div class="card-body">
+              <h4 class="card-title text-center baslik">Kiralama</h4>
+              <div class="form-group row">
+                <div class="col-lg-3">
+                  <label class="col-form-label">Kiralama Başlangıcı tarihi</label>
+                </div>
+                <div class="col-lg-8">
+               <input formControlName="rentDate"  [readonly]="true" type="text"/>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-lg-3">
+                  <label class="col-form-label">Kiralmanın bitiş tarihi</label>
+                </div>
+                <div class="col-lg-8">
+                  <input formControlName="returnDate" type="datetime-local"/>
+                </div>
+              </div>
+          
+            </div>
+          </form>
+          <div class="card-footer">
+              <button (click)="add()" class="btn btn-primary">Ödeme Yap</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

@@ -1,0 +1,21 @@
+<div class="row m-2">
+    <div style=" min-width:310px;" class="col mt-1 mb-1">
+        <select class="form-select"   #selectColor
+        (change)="selectColorChange(selectColor.value)"
+        aria-label="Default select example">
+            <option [value]="'0'">Tüm Renkler</option>
+            <option *ngFor="let color of colors" [value]="color.id">
+                {{ color.colorName }}
+              </option>
+          </select>
+    </div>
+    <div style=" min-width:310px;" class="col mt-1 mb-1">
+        <select class="form-select"   #selectBrand  (change)="selectBrandChange(selectBrand.value)" aria-label="Default select example">
+            <option [value]="'0'">Tüm markalar</option>
+            <option *ngFor="let brand of brands" [value]="brand.id">
+                {{ brand.brandName }}
+              </option>
+          </select>
+        </div>
+    <div style="max-width:120px; min-width:120px;" class="col"><button (click)="btnSorgula()" type="button" class="btn btn-primary"><i class="fas fa-search"></i> Filtrele</button></div>
+</div>

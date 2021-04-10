@@ -1,0 +1,134 @@
+<div class="row">
+  <div class="col-1">
+    <i (click)="btnBack()"
+      class="fas fa-chevron-circle-left fa-2x btn"
+      data-toggle="tooltip"
+      data-placement="top"
+      title="Geri"
+    ></i>
+  </div>
+</div>
+<div class="col-lg-6 grid-margin stretch-card">
+  <div class="card">
+    <form  [formGroup]="paymentAddForm">
+      <div class="card-body">
+        <h4 class="card-title text-center baslik">Ödeme</h4>
+        <div class="form-group row">
+            <div class="col-lg-3">
+              <label class="col-form-label">Kart No</label>
+            </div>
+            <div class="col-lg-8">
+                <input
+                formControlName="cardNumber" 
+                class="form-control"
+                type="text"
+                [validation]="true"
+                placeholder="0000-0000-0000-0000"
+                [dropSpecialCharacters]="false"
+                mask="0000-0000-0000-0000"
+              />
+              
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-lg-3">
+              <label class="col-form-label">Kart üzerindeki isim</label>
+            </div>
+            <div class="col-lg-8">
+                <input
+                formControlName="nameAndSurname"
+                class="form-control"
+                type="text"
+              />
+              
+            </div>
+          </div>
+        <div class="form-group row">
+          <div class="col-lg-3">
+            <label class="col-form-label">Son kullanım tarihi</label>
+          </div>
+          <div class="col-lg-8">
+            <input
+            formControlName="expirationDate"
+              class="form-control"
+              type="text"
+              mask="00/00"
+              placeholder="00/00"
+              [validation]="true"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-lg-3">
+              <label class="col-form-label">Cvv</label>
+            </div>
+            <div class="col-lg-8">
+              <input
+              formControlName="cvv"
+                class="form-control"
+                type="text"
+                mask="000"
+                placeholder="000"
+                [validation]="true"
+              />
+            </div>
+          </div>  
+      </div>
+    </form>
+    <div class="card-footer">
+      <button (click)="btnOdemeYap()" type="button"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-primary">Ödeme Yap</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div  class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div *ngIf="Success==false" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <img style="max-width:200px;" src="https://cdn.dribbble.com/users/251873/screenshots/9388228/error-img.gif">
+      </div>
+      <div class="row">
+           <div class="col">
+             <h3 style="color: darkred; font-weight: bold;" class="text-center">{{message}}</h3>
+           </div>
+           
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="Success==true" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <img style="max-width:200px;" src="https://i.pinimg.com/originals/35/f3/23/35f323bc5b41dc4269001529e3ff1278.gif">
+      </div>
+      <div class="row">
+           <div class="col">
+             <h3 style="color: darkgreen; font-weight: bold;" class="text-center">Siparis Onaylayın</h3>
+           </div>
+           
+      </div>
+      <div class="row">
+        <div class="col">
+         <input [(ngModel)]="kaydet" type="checkbox" class="float-left"> <h6 class="ml-2">  Kart bilgileriniz kaydedilsinmi</h6>
+        </div>
+        
+   </div>
+      <div class="modal-footer">
+        <button (click)="btnKirala()" class="btn btn-secondary" data-bs-dismiss="modal" >Onayla</button>
+      </div>
+    </div>
+  </div>
+</div>

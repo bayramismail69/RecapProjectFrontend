@@ -1,0 +1,94 @@
+<div style="background-color: aliceblue;padding-bottom:15px;border-radius:5px;border-width:2px;margin-top:5px;margin-bottom:15px;" class="row">
+  <app-cars-filter-search-bar></app-cars-filter-search-bar>
+<div class="row pt-1 pb-1 pl-5 pr-5">
+  <div class="row">
+    <div class="col-sm">
+      <a *ngIf="btnClear == true" class="btn btn-info" href="/cars"
+        ><i class="fas fa-broom"></i> Clear Filter</a
+      >
+    </div>
+    <div style="min-width: 200px" class="col-sm">
+      <div class="row">
+        <div style="max-width: 20px; min-width: 20px" class="col">
+          <i class="fas fa-search"></i>
+        </div>
+        <div class="col">
+          <input
+            type="search"
+            
+            [(ngModel)]="filterText"
+            class="form-control"
+            placeholder="Araba Ara"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-sm"></div>
+  </div>
+</div>
+</div>
+<div *ngIf="dataLoaded == true" style="margin-top:5px;" class="row">
+  <div
+    *ngFor="let carDto of carDtos | carDtoFilter: filterText"
+    style="width: 18rem"
+    class="col-lg-3 col-12 col-sm-12 col-md-12 col-xl-2 grid-margin stretch-card"
+  >
+    <div class="card">
+      <div class="card-body text-center">
+        <div class="row">  <h6 class="card-title baslik mb-0">{{ carDto.carName }}</h6></div>
+        <div class="d-flex justify-content-between align-items-baseline mb-2">
+         
+          <div class="row"> <h6 class="card-title  mb-0 row" data-toggle="tooltip" data-placement="top" title="Bu araç kiralana bilmesi için gereken findex puanı">Findex Puan={{ carDto.minimumCarFindex }}</h6></div>
+          <div *ngIf="tokenDecord.roles[0]=='admin'" class="dropdown mb-2">
+              <button class="btn p-0" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-pen-square"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
+                <a routerLink="/carUpdate/{{carDto.carId}}" class="dropdown-item d-flex align-items-center" href="#"><i data-feather="edit-2" class="icon-sm mr-2"></i> <span class="">Edit</span></a>
+              </div>
+            </div>
+        </div>
+        <div id="progressbar1" class="">
+          <img
+            *ngIf="carDto.imagePath[0] != null"
+            class="card-img-top"
+            style="max-height: 120px"
+            src="https://localhost:44309{{ carDto.imagePath[0] }}"
+          />
+          <img
+            *ngIf="carDto.imagePath[0] == null"
+            class="card-img-top"
+            style="max-height: 120px"
+            src="https://localhost:44309/Images/default.png"
+          />
+         
+        </div>
+        <div class="row">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <div class="alert alert-fill-primary" role="alert">
+                Ücret {{ carDto.dailyPrice | currency }}
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="alert alert-icon-primary" role="alert">
+                <i class="fas fa-car float-left"></i>
+                <h6 class="font-weight-bold">{{ carDto.brandName }}</h6>
+              </div>
+             
+            </li>
+          </ul>
+        </div>
+        <a href="/carDetail/{{carDto.carId}}" class="btn btn-primary btn-block">Detay</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- row -->
+<div *ngIf="dataLoaded == false" class="row">
+  <div class="d-flex justify-content-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>

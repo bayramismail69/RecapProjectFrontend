@@ -1,0 +1,87 @@
+<div class="row">
+   <div class="col-1">
+        <i (click)="btnBack()" class="fas fa-chevron-circle-left fa-2x btn" data-toggle="tooltip" data-placement="top" title="Geri"></i>
+   </div>
+</div>
+<div *ngIf="dataLoaded==true" class="row">
+    <img *ngIf="carImages[0]==null" style="max-height:380px; max-width:500px;" src="https://localhost:44309/Images/default.png" class="d-block w-100" alt="...">
+  <div *ngIf="carImages[0]!=null" style="min-width:300px;" class="col-8">
+    <div  class="example">
+        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+            <ol style="background-color: #586fe1;" class="carousel-indicators">
+                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
+            </ol>
+            <div class="carousel-inner">
+                <img *ngIf="carImages[0]==null" style="max-height:380px;" src="https://localhost:44309/Images/default.png" class="d-block w-100" alt="...">
+                <div  *ngFor="let carImage of carImages" [class]="getCarImagesClass(carImage)">
+                   
+                    <img style="max-height:380px;" src="https://localhost:44309/{{carImage.imagePath}}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                    </div>
+                </div>
+               
+            </div>
+            <a style="background-color:#586fe1;" class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a style="background-color: #586fe1;" class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+  </div>
+  <div style=" padding-top:25px;min-width:200px;border-radius:10px;" class="col">
+    <div class="card text-white bg-primary">
+        <div style="border-bottom-style: double;
+        border-bottom-color: white;
+        border-bottom-width: 1px;" class="card-header text-center">
+        <h3 class=" mr-5 text-white">Araba Detayı  </h3> 
+        </div>
+        <div class="card-body">
+          <table class="table table-light ">
+            <tr>
+                <td class="table-success">Marka</td>
+                <td> {{carDto.brandName | uppercase}}</td>
+            </tr>
+              <tr>
+                  <td class="table-success">Marka</td>
+                  <td>{{carDto.carName |uppercase}}</td>
+              </tr>
+              <tr>
+                <td class="table-success">Model Yılı</td>
+                <td>{{carDto.modelYear}}</td>
+            </tr>
+            <tr>
+                <td class="table-success">Renk</td>
+                <td>{{carDto.colorName}}</td>
+            </tr>
+            <tr>
+                <td class="table-success">Fiyat</td>
+                <td>{{carDto.dailyPrice |currency}}</td>
+            </tr>
+            <tr>
+                <td class="table-success">Detay</td>
+                <td style="text-align: justify;white-space: pre-wrap; "><p>
+                    {{carDto.description }}
+                </p></td>
+            </tr>
+          </table>
+        </div>
+        <div class="card-footer">
+            <button [routerLink]="['/rentalControl', carDto.carId]" class="btn btn-light btn-outline-secondary"><i class="far fa-check-circle"></i> Kirala</button>
+        </div>
+      </div>
+  </div>
+  <div class="col-1"></div>
+</div>
+<div *ngIf="dataLoaded==false" class="row">
+    <div class="spinner-border text-danger" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+</div>
